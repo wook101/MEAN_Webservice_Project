@@ -550,7 +550,7 @@ h4 small,
 .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 1px solid #0d747c;
+  border-bottom: 1px solid #4b3e04;
 }
 
 ul,
@@ -4724,7 +4724,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #ffffff;
-  background-color: #d92432;
+  background-color: #856808;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -4938,7 +4938,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   padding: 8px 15px;
   margin-bottom: 20px;
   list-style: none;
-  background-color: #13a0aa;
+  background-color: #4b3e04;
   border-radius: 4px;
 }
 
@@ -4975,7 +4975,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-left: -1px;
   line-height: 1.428571429;
   text-decoration: none;
-  background-color: #13a0aa;
+  background-color: #4b3e04;
   border: 1px solid transparent;
 }
 
@@ -5603,7 +5603,7 @@ a.thumbnail:focus {
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: transparent;
-  border: 1px solid #0d747c;
+  border: 1px solid #4b3e04;
 }
 
 .list-group-item:first-child {
@@ -5636,7 +5636,7 @@ a.list-group-item .list-group-item-heading {
 a.list-group-item:hover,
 a.list-group-item:focus {
   text-decoration: none;
-  background-color: #15b5c1;
+  background-color: #4b3e04;
 }
 
 .list-group-item.active,
@@ -5644,8 +5644,8 @@ a.list-group-item:focus {
 .list-group-item.active:focus {
   z-index: 2;
   color: #ffffff;
-  background-color: #15b5c1;
-  border-color: #0d747c;
+  background-color: #4b3e04;
+  border-color: #4b3e04;
 }
 
 .list-group-item.active .list-group-item-heading,
@@ -6023,7 +6023,7 @@ body.modal-open,
 
 .modal-content {
   position: relative;
-  background-color: #13a0aa;
+  background-color: #4b3e04;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
@@ -7323,7 +7323,7 @@ legend {
 }
 
 .list-group-item {
-  background-color: #13a0aa;
+  background-color: #4b3e04;
 }
 
 .popover {
