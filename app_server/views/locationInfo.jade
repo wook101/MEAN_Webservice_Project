@@ -1,6 +1,7 @@
 extends layout
-
+        
 block content
+  script(src='https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9j980t60f1')
   .row.page-header
     .col-lg-12
       h1 Starcups
@@ -38,11 +39,14 @@ block content
         span.glyphicon.glyphicon-ok
         | &nbsp;Fremium wifi
         | &nbsp;
- .col-xs-12.col-sm-6.location-map
-   .panel.panel.primary
-     .panel-heading
-       h2.panel-title Location map
-     .penel-body
-       img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=51.455041,-0.9690884&zoom=17&size=400*350&sensor=false&makers=51.455041,-0.9690884&scale=2')
+    .col-xs-12.col-sm-6.location-map
+    .panel.panel.primary
+        .panel-heading
+        h2.panel-title Location map
+        .penel-body
+        //img.img-responsive.img-rounded
+        div#map(style="width:400px;height:400px;")
+ 
 
 
+    script(src="/javascripts/map.js")
