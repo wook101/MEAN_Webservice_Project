@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-12
+      h1 Starcups
+  .row
+    .col-xs-12.col-md-9
+      .row
+        .col-xs-12.col-sm-6
+          p.rating
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star
+            span.glyphicon.glyphicon-star-empty
+            span.glyphicon.glyphicon-star-empty
+    p 125 High Street, Reading, RG6 1PS
+    .panel.panel-primary
+    .panel-heading
+        h2.panel-title Opening hours
+    .panel-body
+        p Mondey - Friday : 7:00am - 7:00pa
+        p Saturday : 8:00am - 5:00pm
+        p Sunday : closed
+    .panel.panel-primary
+    .panel-heading
+        h2.panel-title Facilities
+    .panel-body
+        span.label.label-warning
+        span.glyphicon.glyphicon-ok
+        | &nbsp;Hot drinks
+        | &nbsp;
+        span.label.label-warning
+        span.glyphicon.glyphicon-ok
+        | &nbsp;Food
+        | &nbsp;
+        span.label.label-warning
+        span.glyphicon.glyphicon-ok
+        | &nbsp;Fremium wifi
+        | &nbsp;
+ .col-xs-12.col-sm-6.location-map
+   .panel.panel.primary
+     .panel-heading
+       h2.panel-title Location map
+     .penel-body
+       img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=51.455041,-0.9690884&zoom=17&size=400*350&sensor=false&makers=51.455041,-0.9690884&scale=2')
+
+
