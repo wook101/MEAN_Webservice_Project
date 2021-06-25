@@ -1,3 +1,3 @@
 module.exports.about = function(req,res){
-    res.render('index',{title:'about'});
+    res.render('about',{title:'소개'});
 };

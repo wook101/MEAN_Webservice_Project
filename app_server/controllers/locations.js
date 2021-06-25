@@ -3,5 +3,6 @@ module.exports.locationInfo = function(req,res){
 };
 
 module.exports.addReview = function(req,res){
-    res.render('index',{title:'addReview'});
+    res.render('locations-review',{title:'addReview'});
 };
+
