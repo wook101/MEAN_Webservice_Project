@@ -4,7 +4,7 @@ block content
   script(src='https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9j980t60f1')
   .row.page-header
     .col-lg-12
-      h1 Starcups
+      h1 스타벅스
   .row
     .col-xs-12.col-md-9
       .row
@@ -15,38 +15,71 @@ block content
             span.glyphicon.glyphicon-star
             span.glyphicon.glyphicon-star-empty
             span.glyphicon.glyphicon-star-empty
-    p 125 High Street, Reading, RG6 1PS
-    .panel.panel-primary
-    .panel-heading
-        h2.panel-title Opening hours
-    .panel-body
-        p Mondey - Friday : 7:00am - 7:00pa
-        p Saturday : 8:00am - 5:00pm
-        p Sunday : closed
-    .panel.panel-primary
-    .panel-heading
-        h2.panel-title Facilities
-    .panel-body
-        span.label.label-warning
-        span.glyphicon.glyphicon-ok
-        | &nbsp;Hot drinks
-        | &nbsp;
-        span.label.label-warning
-        span.glyphicon.glyphicon-ok
-        | &nbsp;Food
-        | &nbsp;
-        span.label.label-warning
-        span.glyphicon.glyphicon-ok
-        | &nbsp;Fremium wifi
-        | &nbsp;
-    .col-xs-12.col-sm-6.location-map
-    .panel.panel.primary
-        .panel-heading
-        h2.panel-title Location map
-        .penel-body
-        //img.img-responsive.img-rounded
-        div#map(style="width:400px;height:400px;")
- 
-
+          p 주소 - 서울 광진구 능동로 107
+          .panel.panel-primary
+          .panel-heading
+            h2.panel-title 영업시간
+          .panel-body
+            p 월요일 - 금요일 : 08:00am - 22:00pm
+            p 토요일 : 09:00am - 22:00pm
+            p 일요일 : 10:00am - 21:00pm
+          .panel.panel-primary
+          .panel-heading
+            h2.panel-title 시설
+          .panel-body
+            span.label
+              span.glyphicon.glyphicon-ok
+              | &nbsp;Hot drinks
+            | &nbsp;
+            span.label
+              span.glyphicon.glyphicon-ok
+              | &nbsp;Food
+            | &nbsp;
+            span.label
+              span.glyphicon.glyphicon-ok
+              | &nbsp;Fremium wifi
+            | &nbsp;
+        .col-xs-12.col-sm-6.location-map
+          .panel.panel.primary
+            .panel-heading
+              h2.panel-title 플레이스
+              .penel-body
+                  //img.img-responsive.img-rounded
+                div#map(style="width:100%;height:300px;")
+  .row 
+    .col-xs-12
+      .panel.penel-primary.review-panel
+        .penel-heading
+          a.btn.pull-right.addReviewBtn(href='/location/reiview/new') 리뷰작성
+          h2.panel-title 방문자 리뷰
+        .penel-body.review-container
+          .row
+            .review
+              .well.well-sm.review-header
+                span.rating
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                span.reviewAuthor 김동욱
+                small.reviewTimestamp 2021.06.13
+              .col-xs-12
+                p 잠깐 휴식하기 좋은 장소 입니다.
+          .row
+            .review
+              .well.well-sm.review-header
+                span.rating
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                  span.glyphicon.glyphicon-star
+                span.reviewAuthor 김유진
+                small.reviewTimestamp 2021.06.20
+              .col-xs-12
+                p 시원하고, 커피가 맛있어요.
+      .col-xs-12.col-md-3
+        p.lead Simon's cafe is on Loc8r because it has...................... 
 
     script(src="/javascripts/map.js")
