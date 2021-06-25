@@ -59,6 +59,7 @@ a:focus {
 a:active,
 a:hover {
   outline: 0;
+  text-decoration: none;
 }
 
 h1 {
@@ -499,7 +500,9 @@ h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+h4{
+  color: #e8d069;
+}
 h1,
 .h1 {
   font-size: 36px;
@@ -5612,6 +5615,7 @@ a.thumbnail:focus {
   margin-bottom: -1px;
   background-color: transparent;
   border: 1px solid #b7ae87;
+  cursor: pointer;
 }
 
 .list-group-item:first-child {
@@ -5631,6 +5635,10 @@ a.thumbnail:focus {
 
 .list-group-item > .badge + .badge {
   margin-right: 5px;
+}
+
+.list-group-item:hover{
+  background-color: #645821;
 }
 
 a.list-group-item {
