@@ -2518,6 +2518,7 @@ input[type="button"].btn-block {
   -webkit-font-smoothing: antialiased;
   font-style: normal;
   font-weight: normal;
+  font-size: small;
   line-height: 1;
   color: rgb(255, 208, 0);
 }
@@ -5610,7 +5611,7 @@ a.thumbnail:focus {
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: transparent;
-  border: 1px solid #4b3e04;
+  border: 1px solid #b7ae87;
 }
 
 .list-group-item:first-child {

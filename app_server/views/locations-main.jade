@@ -1,32 +1,27 @@
 extends layout
 
+include _includes/sharedHTMLfunctions
+
 block content
   #banner.page-header
     .row
       .col-lg-6
-        h1 Cafe
-          smail &nbsp; 주위에 Wi-Fi를 사용할 수있는 장소를 찾아보세요!
+        h1 #{pageHeader.title}
+          smail &nbsp; #{pageHeader.strapline}
   .row
     .col-xs-12.col-sm-8
       .row.list-group
-        .col-xs-12.list-group-item
-          h4
-            a(href="/location") 건대입구역 스타벅스
-            smail &nbsp;
-              span.glyphicon.plyphicon-star
-              span.glyphicon.plyphicon-star
-              span.glyphicon.plyphicon-star
-              span.glyphicon.plyphicon-star
-              span.glyphicon.plyphicon-star-empty
-              span.glyphicon.plyphicon-star-empty
-            span.badge.pull-right.badge-default 100m
-          p.address 주소 - 서울 광진구 능동로 107
-          p
-            span.label Hot drinks
-            | &nbsp;
-            span.label Food
-            | &nbsp;
-            span.label Premium wifi
-            | &nbsp;
+        each location in locations
+          .col-xs-12.list-group-item
+            h4
+              a(href="/location")= location.name
+              smail &nbsp;
+                +outputRating(location.rating) 
+              span.badge.pull-right.badge-default= location.distance
+            p.address= location.address
+            p
+              each facility in location.facilities
+                span.label= facility
+                | &nbsp;
     .col-xs-12.col-sm-4
-      p.lead wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe.......................................
+      p.lead= sidebar

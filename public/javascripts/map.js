@@ -1,5 +1,7 @@
+const lat = document.currentScript.getAttribute('lat');
+const lng = document.currentScript.getAttribute('lng');
 var mapOptions = {
-    center: new naver.maps.LatLng(37.540632644213474, 127.07074699425593),
+    center: new naver.maps.LatLng(lat, lng),
     zoom: 17
 };
 
