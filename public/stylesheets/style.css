@@ -3,5 +3,7 @@
 .review-header {margin-bottom: 10px;}
 .reviewAuthor {margin: 0 5px; font-weight: bold;}
 .reviewTimestamp {color: #ccc;}
-.addReviewBtn{background-color: rgb(255, 208, 0); color: black;font-weight: bold;}
-.addReviewBtn:hover{background-color: yellow; color: black;}
+.writeReviewBtn{background-color: rgb(255, 208, 0); color: black;font-weight: bold;}
+.writeReviewBtn:hover{background-color: yellow; color: black;}
+.addReivewBtn{color: #fff;background-color: #4b3e04;font-weight:bold;}
+.addReivewBtn:hover{color: #fff;background-color: #5a512b;font-weight:bold;}
