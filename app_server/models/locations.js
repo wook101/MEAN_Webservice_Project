@@ -25,4 +25,4 @@ const locationSchema = new mongoose.Schema({
     reviews: [reviewSchema]
 });
 
-mongoose.model('Location',locationSchema,'Locations'); //첫번째 인자:모델명, 두번째 인자:스키마 이름, 세번째 인자: mongoDB컬렉션 명 
+mongoose.model('Location',locationSchema,'locations'); //첫번째 인자:모델명, 두번째 인자:스키마 이름, 세번째 인자: mongoDB컬렉션 명 
