@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/meanWook';
-mongoose.connect(dbURI);
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+mongoose.connect(dbURI);    //mongoDb연결
 
 //DB 연결 열기 및 닫기를 적절히 관리
 //mongoose의 연결 이벤트들을 콘솔에 찍음 , [연결 이벤트들 모니터링]
 mongoose.connection.on('connected',()=>{
-    console.log('몽구스가 연결되었습니다. '+dbURI);
+    console.log('몽구스에 연결되었습니다. '+dbURI);
 });
 mongoose.connection.on('error',(err)=>{
     console.log('몽구스 연결 에러. '+err);
@@ -41,3 +45,7 @@ process.on('SIGTERM',()=>{
        process.exit(0); 
     });
 });
+
+
+
+require('./locations'); //어플리케이션에서 가져옴
