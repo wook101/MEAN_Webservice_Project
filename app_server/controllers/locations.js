@@ -4,8 +4,8 @@ module.exports.locationInfo = function(req,res){
         title:'locationInfo',
         sidebar:'해당 카페는......................',
         location:{
-            name: '건대입구역 스타벅스',
-            address:'주소 - 서울특별시 광진구 화양동 5-47',
+            name: '스타벅스 건대입구점',
+            address:'서울특별시 광진구 화양동 5-47',
             rating: 3,
             facilities:['Hot drinks','Food','Premium wifi'],
             coords: {lat: 37.540632644213474,
