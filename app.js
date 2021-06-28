@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./app_server/models/db');
-
+const routeApi = require('./app_api/routes/route'); //라우팅
 
 const app = express();
 
@@ -18,7 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'public')));
 
-require('./app_server/routes/route')(app); //라우팅
+//라우팅
+app.use('/api', routeApi);
 
 
 // catch 404 and forward to error handler

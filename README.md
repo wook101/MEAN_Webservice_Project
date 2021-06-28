@@ -23,13 +23,18 @@ C:\data\dumpData
 -h host server (and port)   
 -d database name   
 -o output destination folder   
-mongodump -h localhost:27017 -d meanWook -o C:\data\dumpData      
+mongodump -h localhost:27017 -d meanWook -o C:\data\dumpData   
+-외부db에서 현재 경로로 dump파일 생성   
+mongodump --uri mongodb+srv://username:password@cluster0.ivwng.mongodb.net/meanWook      
 3. 덤프 데이터가 위치한 경로에서 live db로 push (dump파일로 복구하기)   
 -h Live host and port   
 -d Live database name   
 -u Username for the live database   
 -p Password for the live database   
-mongorestore -h [hostname] -u [username] -p [password] -d [db_name] 로컬 덤프 파일경로   
+MongoDB Database Tools설치 후 이용할 수 있음!   
+mongorestore -h [hostname] -u [username] -p [password] -d [db_name] 로컬 덤프 파일경로
+ex)[dump -> localDB]   
+mongorestore --host localhost:27017 --db [meanWook] [C:\Users\ehddn\dump\meanWook]   
 4. 실제 live db에서 테스트   
 몽고db쉘에서 외부 db 접속   
 mongo "mongodb+srv://cluster0.ivwng.mongodb.net/[dbName]" --username [username]   
