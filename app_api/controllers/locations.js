@@ -18,7 +18,14 @@ module.exports.locationsCreate = function(req,res){
     
 };
 module.exports.locationsReadOne = function(req,res){
-    sendJsonResponse(res,200,{"state":"success"});
+    let locationid = req.params.locationid;
+    Location
+        .findById(locationid)
+        .exec(function(err, location){  //db쿼리 실행이 비동기적으로 작동, node메인 프로세스 블록킹을 방지
+            console.log("findById complete");
+            sendJsonResponse(res, 200, location);
+        });
+
 };
 module.exports.locationsUpdateOne = function(req,res){
     
