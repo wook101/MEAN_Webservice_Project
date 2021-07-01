@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const db = require('./app_server/models/db');
+const db = require('./app_api/models/db');
 const routeApi = require('./app_api/routes/route'); //라우팅
 
 const app = express();

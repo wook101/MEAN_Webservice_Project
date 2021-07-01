@@ -1,4 +1,4 @@
-const Location = require('mongoose').model('Location');
+const Location = require('mongoose').model('Location'); 
 
 module.exports.locationInfo = function(req,res){
     res.render('locationInfo',
