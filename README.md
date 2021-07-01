@@ -64,6 +64,15 @@ geoNear :
 geoSearch :   
 exec : DB쿼리 실행   
 
+[api요청에 대한 에러처리]   
+const sendJsonResponse = function(res, status, content){    //상태, json응답을 함수로 만듬
+    res.status(status);   
+    res.json(content);   
+}   
+ex)   
+sendJsonResponse(res, 200, location);   //성공   
+sendJsonResponse(res, 404, {"message":"mongodb에 해당 locationid가 존재하지 않습니다."});//실패          
+                    
 
 [MongoDB 샘플데이터]   
 삽입 : db.locations.save({name: '탐앤탐스 건대입구점',address: '서울특별시 광진구 화양동 5-91',rating: 2,facilities: ['Hot drinks', 'Food', 'Premium wifi'],coords: [127.07046850307063,37.5408220415283],openingTimes: [{days: '매일',opening: '00:00am', closing: '24:00pm',closed: false}]})   
