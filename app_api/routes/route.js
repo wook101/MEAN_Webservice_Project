@@ -10,14 +10,14 @@ const othersCtl = require('../controllers/others');
 router.get('/', mainCtl.main);
 router.get('/location/review/new', locationsCtl.addReview);
 
-//location
+//locations
 router.get('/locations', locationsCtl.locationsListByDistance);
 router.post('/locations', locationsCtl.locationsCreate);
 router.get('/locations/:locationid',locationsCtl.locationsReadOne);
 router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);
 router.delete('/locations/:locationid',locationsCtl.locationsDeleteOne);
 
-//review
+//reviews
 router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);
 router.get('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsReadOne);
 router.put('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsUpdateOne);
