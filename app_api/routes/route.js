@@ -11,7 +11,7 @@ router.get('/', mainCtl.main);
 router.get('/location/review/new', locationsCtl.addReview);
 
 //location
-router.get('/locations', locationsCtl.locationsList);
+router.get('/locations', locationsCtl.locationsListByDistance);
 router.post('/locations', locationsCtl.locationsCreate);
 router.get('/locations/:locationid',locationsCtl.locationsReadOne);
 router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);

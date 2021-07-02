@@ -3,6 +3,18 @@ const sendJsonResponse = function(res, status, content){ //상태, json응답을
     res.status(status);
     res.json(content);
 }
+const meterConversion = (function(){
+    let mToKm = function(distance){
+        return parseFloat(distance / 1000);
+    };
+    let kmToM = function(distance){
+        return parseFloat(distance * 1000);
+    };
+    return {
+        mToKm : mToKm,
+        kmToM : kmToM
+    };
+})();
 module.exports.locationInfo = function(req,res){
 
 };
@@ -11,11 +23,75 @@ module.exports.addReview = function(req,res){
     res.render('locations-review',{title:'addReview'});
 };
 
-module.exports.locationsList = function(req,res){
-    
+module.exports.locationsListByDistance = function(req,res){
+    let lng = parseFloat(req.query.lng);
+    let lat = parseFloat(req.query.lat);
+    let maxDistance = parseFloat(req.query.maxDistance);
+    let point = {
+        type: "Point",
+        coordinates: [lng, lat]
+    };
+    /*
+    let geoOptions = {
+        spherical: true,
+        maxDistance: meterConversion.kmToM(maxDistance),
+        num: 10
+    };*/
+
+    console.log(meterConversion.kmToM(maxDistance));
+    if (!lng || !lat){
+        sendJsonResponse(res, 404, {"message":"요청 쿼리에서 위도 또는 경도의 값이 존재하지 않습니다."});
+        return;
+    }
+
+    Location.aggregate(
+        [{$geoNear:{near: point,
+                    spherical: true
+                    }}],
+        function(err, results, stats){
+        let locations = [];
+        if (err){
+            sendJsonResponse(res, 404, err);
+        } else{
+            results.forEach(function(doc){
+                locations.push({
+                    distance: meterConversion.mToKm(doc.dis),
+                    name: doc.obj.name,
+                    address: doc.obj.rating,
+                    facilities: doc.obj.facilities,
+                    _id: doc.obj._id
+                });
+            });
+            sendJsonResponse(res, 200, locations);
+        }
+    });
 };
+
 module.exports.locationsCreate = function(req,res){
-    
+    Location.create({
+       name: req.body.name,
+       address: req.body.address,
+       facilities: req.body.facilities.split(","),
+       coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
+       openingTimes:[{
+            days: req.body.days1,
+            opening: req.body.opening1,
+            closing: req.body.closing1,
+            closed:req.body.closed1
+       },
+       {
+            days: req.body.days2,
+            opening: req.body.opening2,
+            closing: req.body.closing2,
+            closed:req.body.closed2
+        }] 
+    }, function(err, location){
+        if(err){
+            sendJsonResponse(res, 400, err);
+        } else{
+            sendJsonResponse(res, 201, location);
+        }
+    });
 };
 module.exports.locationsReadOne = function(req,res){
     

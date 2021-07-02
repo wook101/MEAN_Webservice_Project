@@ -20,7 +20,7 @@ const locationSchema = new mongoose.Schema({
     address: String,
     rating: {type: Number, "default":0, min:0, max:5},
     facilities: [String], //배열내에 모든 데이터 타입이 String인 경우
-    coords: {type:[Number], index:'2dsphere'},
+    coords: {type:[Number], index:'2dsphere', required:true},
     openingTimes: [openingTimeSchema],
     reviews: [reviewSchema]
 });
