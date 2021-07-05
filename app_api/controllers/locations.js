@@ -94,7 +94,6 @@ module.exports.locationsCreate = function(req,res){
     });
 };
 module.exports.locationsReadOne = function(req,res){
-    
     if (req.params && req.params.locationid){
         Location
             .findById(req.params.locationid)
@@ -115,7 +114,45 @@ module.exports.locationsReadOne = function(req,res){
 
 };
 module.exports.locationsUpdateOne = function(req,res){
-    
+    if(!req.params.locationid){
+        sendJsonResponse(res, 404, {"message":"locationid를 찾을 수 없습니다."});
+        return;
+    }
+    Location
+        .findById(req.params.locationid)
+        .select('-reviews -rating') //-대쉬를 붙이는 이유는 해당 컬럼들(reviews, rating)을 제외하고 검색 하겠다는 뜻
+        .exec(function(err, location){
+            if(!location){
+                sendJsonResponse(res, 404, {"message":"해당 locationid가 db에 존재하지 않습니다."});
+                return;
+            }else if(err){
+                sendJsonResponse(res, 400, err);
+                return;
+            }
+            location.name = req.body.name;
+            location.address = req.body.address;
+            location.facilities = req.body.facilities.split(",");
+            location.coords = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
+            location.openingTimes = [{
+                days: req.body.days1,
+                opening: req.body.opening1,
+                closing: req.body.closing1,
+                closed: req.body.closed1
+            },{
+                days: req.body.days2,
+                opening: req.body.opening2,
+                closing: req.body.closing2,
+                closed: req.body.closed2
+            }];
+            location.save(function(err,location){
+                if (err){
+                    sendJsonResponse(res, 404, err);
+                } else{
+                    sendJsonResponse(res, 200, location);
+                }
+            });
+        });
+
 };
 module.exports.locationsDeleteOne = function(req,res){
     

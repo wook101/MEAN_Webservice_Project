@@ -17,7 +17,7 @@ let doAddReview = function(req, res, location){
             if(err){
                 sendJsonResponse(res, 400, err);
             }else{
-                updateAverageRating(location._id);  //rating은 reivew객체 내에 없음으로 따로 처리
+                updateAverageRating(location._id);  //rating은 reivew객체 내에 없음으로 따로 처리, 평균 평점 업데이트
                 thisReview = location.reviews[location.reviews.length-1];
                 sendJsonResponse(res, 201, thisReview);
             }
