@@ -150,5 +150,34 @@ module.exports.reviewsUpdateOne = function(req,res){
         });
 };
 module.exports.reviewsDeleteOne = function(req,res){
+    if (!req.params.locationid || !req.params.reviewid){
+        sendJsonResponse(res, 404, {"message":"요청 파라미터에서 locationid 또는 reviewid를 찾을 수 없습니다."});
+        return;
+    }
+    Location
+        .findById(req.params.locationid)
+        .select("reviews")
+        .exec(function(err, location){
+            if (!location){
+                sendJsonResponse(res, 404, {"message":"몽고db에 locationid가 존재 하지 않습니다."});
+                return;
+            }else if (err){
+                sendJsonResponse(res, 400, err);
+                return;
+            }
+            if (location.reviews && location.reviews.length > 0){
+                location.reviews.id(req.params.reviewid).remove();  //리뷰삭제
+                location.save(function(err){
+                    if (err){
+                        sendJsonResponse(res, 404, err);
+                    }
+                    updateAverageRating(location._id);
+                    sendJsonResponse(res, 200, {"message":"리뷰가 삭제 되었습니다."});
+                })
+
+            }else{
+                sendJsonResponse(res, 404, {"message":"리뷰가 존재하지 않습니다."})
+            }
+        });
     
 };

@@ -15,13 +15,13 @@ router.get('/locations', locationsCtl.locationsListByDistance);
 router.post('/locations', locationsCtl.locationsCreate);                        //json응답 성공
 router.get('/locations/:locationid',locationsCtl.locationsReadOne);             //json응답 성공
 router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);           //json응답 성공
-router.delete('/locations/:locationid',locationsCtl.locationsDeleteOne);
+router.delete('/locations/:locationid',locationsCtl.locationsDeleteOne);        //json응답 성공
 
 //reviews
-router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);            //json응답 성공
-router.get('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsReadOne);   //json응답 성공
-router.put('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsUpdateOne); //json응답 성공
-router.delete('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsDeleteOne);
+router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);                //json응답 성공
+router.get('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsReadOne);       //json응답 성공
+router.put('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsUpdateOne);     //json응답 성공
+router.delete('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsDeleteOne);  //json응답 성공
 
 
 
