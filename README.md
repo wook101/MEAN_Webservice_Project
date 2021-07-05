@@ -32,9 +32,11 @@ mongodump --uri mongodb+srv://username:password@cluster0.ivwng.mongodb.net/meanW
 -u Username for the live database   
 -p Password for the live database   
 MongoDB Database Tools설치 후 이용할 수 있음!   
-mongorestore -h [hostname] -u [username] -p [password] -d [db_name] 로컬 덤프 파일경로
+mongorestore -h [hostname] -u [username] -p [password] -d [db이름] 로컬 덤프 파일경로
 ex)[dump -> localDB]   
-mongorestore --host localhost:27017 --db [meanWook] [C:\Users\ehddn\dump\meanWook]   
+mongorestore --host localhost:27017 --db [db이름] [C:\Users\ehddn\dump\meanWook]
+ex[dump -> 외부db]   
+mongorestore --uri mongodb+srv://<username>:<PASSWORD>@cluster0.ivwng.mongodb.net -d [db이름] [json덤프 파일 경로 ex)C:\data\dumpData\dump\meanWook]   
 4. 실제 live db에서 테스트   
 몽고db쉘에서 외부 db 접속   
 mongo "mongodb+srv://cluster0.ivwng.mongodb.net/[dbName]" --username [username]   
