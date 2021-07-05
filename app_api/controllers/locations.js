@@ -155,5 +155,18 @@ module.exports.locationsUpdateOne = function(req,res){
 
 };
 module.exports.locationsDeleteOne = function(req,res){
-    
+    let locationid = req.params.locationid;
+    if (locationid){
+        Location
+            .findByIdAndRemove(locationid)
+            .exec(function(err, location){
+                if (err){
+                    sendJsonResponse(res, 404, err);
+                    return;
+                }
+                sendJsonResponse(res, 200, {"message":"해당 location이 제거 되었습니다."});
+            });
+    } else{
+        sendJsonResponse(res, 404, {"message":"요청 파라미터에 locationid가 존재하지 않습니다."});
+    }
 };
