@@ -110,7 +110,44 @@ module.exports.reviewsReadOne = function(req,res){
     }
 };
 module.exports.reviewsUpdateOne = function(req,res){
-    
+    if (!req.params.locationid || !req.params.reviewid){
+        sendJsonResponse(res, 404, {"message":"요청 파라미터에서 locationid 또는 reviewid를 찾을 수 없습니다."})
+        return;
+    }
+    Location
+        .findById(req.params.locationid)
+        .select('reviews')
+        .exec(function(err, location){
+            let thisReview;
+            if(!location){
+                sendJsonResponse(res, 404, {"message":"locationid를 찾을 수 없습니다."});
+                return;
+            } else if(err){
+                sendJsonResponse(res, 400, err);
+                return;
+            }
+            if (location.reviews && location.reviews.length > 0){   //해당 지점에 대해 리뷰가 달려있다면
+                thisReview = location.reviews.id(req.params.reviewid);
+                if (!thisReview){
+                    sendJsonResponse(res, 404, {"message":"reviewid를 찾을 수 없습니다."});
+                } else {
+                    thisReview.author = req.body.author;
+                    thisReview.rating = req.body.rating;
+                    thisReview.reviewText = req.body.reviewText;
+                    location.save(function(err, location){
+                        if (err){
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            updateAverageRating(location._id);      //평균 평점 업데이트
+                            sendJsonResponse(res, 200, thisReview);
+                        }
+                    });
+                }
+            } else {
+                sendJsonResponse(res, 404, {"message":"업데이트 할 리뷰가 존재하지 않습니다."});
+            }
+
+        });
 };
 module.exports.reviewsDeleteOne = function(req,res){
     

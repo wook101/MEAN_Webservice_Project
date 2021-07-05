@@ -12,15 +12,15 @@ router.get('/location/review/new', locationsCtl.addReview);
 
 //locations
 router.get('/locations', locationsCtl.locationsListByDistance);
-router.post('/locations', locationsCtl.locationsCreate);
-router.get('/locations/:locationid',locationsCtl.locationsReadOne);
-router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);
+router.post('/locations', locationsCtl.locationsCreate);            //완료
+router.get('/locations/:locationid',locationsCtl.locationsReadOne); //완료
+router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);//완료
 router.delete('/locations/:locationid',locationsCtl.locationsDeleteOne);
 
 //reviews
-router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);
-router.get('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsReadOne);
-router.put('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsUpdateOne);
+router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);   //완료 
+router.get('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsReadOne);   //완료
+router.put('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsUpdateOne);
 router.delete('/locations/:locationid/reviews/:reivewid',reviewsCtl.reviewsDeleteOne);
 
 
