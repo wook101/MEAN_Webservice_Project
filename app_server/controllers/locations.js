@@ -1,6 +1,15 @@
 const Location = require('mongoose').model('Location'); 
+const request = require('request');
+const apiOptions = {
+    server : "http://localhost:3000"
+};
+if (process.env.NODE_ENV==='production'){
+    apiOptions.server = "http://외부 호스트 서버주소"
+}
 
 module.exports.locationInfo = function(req,res){
+    
+    /*
     res.render('locationInfo',
     {
         title:'locationInfo',
@@ -48,6 +57,7 @@ module.exports.locationInfo = function(req,res){
             }
         ]
     });
+    */
 };
 
 module.exports.addReview = function(req,res){
