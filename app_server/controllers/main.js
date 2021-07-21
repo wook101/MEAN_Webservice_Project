@@ -1,4 +1,3 @@
-
 module.exports.main = function(req,res){
     res.render('locations-main',
             {
@@ -8,7 +7,7 @@ module.exports.main = function(req,res){
                     strapline: '주위에 Wi-Fi를 사용할 수있는 장소를 찾아보세요!'
                 },
                 sidebar:'wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe.......................................',
-                locations:[{
+                locations: responseBody/*[{
                     name: '건대입구역 스타벅스',
                     address:'주소 - 서울특별시 광진구 화양동 5-47',
                     rating: 3,
@@ -28,7 +27,7 @@ module.exports.main = function(req,res){
                     rating: 4,
                     facilities:['Hot drinks','Food','Premium wifi'],
                     distance: '200m'
-                }]
+                }]*/
             });
             
 };

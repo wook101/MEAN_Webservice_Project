@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./app_api/models/db');
 const routeApi = require('./app_api/routes/route'); //라우팅
+const route = require('./app_server/routes/route');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'public')));
 
 //라우팅
+app.use('/', route);
 app.use('/api', routeApi);
 
 

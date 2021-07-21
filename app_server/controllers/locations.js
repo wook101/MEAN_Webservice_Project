@@ -7,8 +7,34 @@ if (process.env.NODE_ENV==='production'){
     apiOptions.server = "http://외부 호스트 서버주소"
 }
 
+const renderHomepage = function(req,res,responseBody){
+    res.render('locationInfo',{
+        title: '메인화면',
+        pageHeader: {
+            title:'Cafe',
+            strapline: '주위에 Wi-Fi를 사용할 수있는 장소를 찾아보세요!'
+        },
+        sidebar:'wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe.......................................',
+        locations: responseBody
+    });
+}
+
 module.exports.locationInfo = function(req,res){
-    
+    let requestOptions, path;
+    path = '/api/locations';
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "GET",
+        json : {},
+        qs : {
+            lng : 127,
+            lat : 34,
+            maxDistance : 20*1000
+        }
+    };    
+    request(requestOptions, function(err, response, body){
+        renderHomepage(req, res, body);
+    });
     /*
     res.render('locationInfo',
     {

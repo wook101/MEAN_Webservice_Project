@@ -27,44 +27,44 @@ module.exports.locationsListByDistance = function(req,res){
     let lng = parseFloat(req.query.lng);
     let lat = parseFloat(req.query.lat);
     let maxDistance = parseFloat(req.query.maxDistance);
-    let point = {
-        type: "Point",
-        coordinates: [lng, lat]
-    };
-    /*
-    let geoOptions = {
-        spherical: true,
-        maxDistance: meterConversion.kmToM(maxDistance),
-        num: 10
-    };*/
 
-    console.log(meterConversion.kmToM(maxDistance));
     if (!lng || !lat){
         sendJsonResponse(res, 404, {"message":"요청 쿼리에서 위도 또는 경도의 값이 존재하지 않습니다."});
         return;
     }
 
-    Location.aggregate(
-        [{$geoNear:{near: point,
-                    spherical: true
-                    }}],
-        function(err, results, stats){
-        let locations = [];
-        if (err){
-            sendJsonResponse(res, 404, err);
-        } else{
-            results.forEach(function(doc){
-                locations.push({
-                    distance: meterConversion.mToKm(doc.dis),
-                    name: doc.obj.name,
-                    address: doc.obj.rating,
-                    facilities: doc.obj.facilities,
-                    _id: doc.obj._id
+    Location.aggregate([
+        {
+            $geoNear:{
+                        spherical: true,
+                        near: { type: "Point", coordinates: [ lng, lat ] },
+                        maxDistance: meterConversion.kmToM(maxDistance),
+                        distanceField: 'distance'
+                    }
+        }],
+            function(err, results, stats){
+            let locations = [];
+            if (err){
+                sendJsonResponse(res, 404, err);
+            } else{
+                
+                results.forEach(function(doc){
+                    
+                    locations.push({
+                        _id: doc._id,
+                        name: doc.name,
+                        address: doc.address,
+                        rating: doc.rating,
+                        facilities: doc.facilities,
+                        distance: meterConversion.mToKm(doc.distance)
+                    });
+                    
                 });
-            });
-            sendJsonResponse(res, 200, locations);
+                
+                sendJsonResponse(res, 200, locations);
+            }
         }
-    });
+    );
 };
 
 module.exports.locationsCreate = function(req,res){
@@ -72,7 +72,7 @@ module.exports.locationsCreate = function(req,res){
        name: req.body.name,
        address: req.body.address,
        facilities: req.body.facilities.split(","),
-       coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
+       coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
        openingTimes:[{
             days: req.body.days1,
             opening: req.body.opening1,
@@ -132,7 +132,7 @@ module.exports.locationsUpdateOne = function(req,res){
             location.name = req.body.name;
             location.address = req.body.address;
             location.facilities = req.body.facilities.split(",");
-            location.coords = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
+            location.coordinates = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
             location.openingTimes = [{
                 days: req.body.days1,
                 opening: req.body.opening1,
