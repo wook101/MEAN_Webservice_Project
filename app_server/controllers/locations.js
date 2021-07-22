@@ -12,6 +12,16 @@ if (process.env.NODE_ENV==='production'){
 }
 
 const renderMainpage = function(req,res,responseBody){
+    let errorMessage;
+    if (!(responseBody instanceof Array)){
+        errorMessage = "/api/locations 요청 error";       //쿼리스트링에서 파라미터가 빠져있을 경우 404에러가 발생한다.
+        responseBody = [];
+    }else{
+        if (!responseBody.length){
+            errorMessage = "주위에 카페가 존재하지 않습니다.";
+        }    
+    }
+    
     res.render('mainPage',{
         title: '메인화면',
         pageHeader: {
@@ -19,7 +29,8 @@ const renderMainpage = function(req,res,responseBody){
             strapline: '주위에 Wi-Fi를 사용할 수있는 장소를 찾아보세요!'
         },
         sidebar:'wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe.......................................',
-        locations: responseBody
+        locations: responseBody,
+        errorMessage: errorMessage
     });
 }
 
@@ -42,7 +53,7 @@ module.exports.locationList = function(req,res){
         qs : {                  //해당 좌표 기준
             lng : 127.08501,
             lat : 37.54,
-            maxDistance : 2     //최대 카페 탐지 거리
+            maxDistance : 0.5     //최대 카페 탐지 거리
         }
     }; 
     request(requestOptions, function(err, response, body){
