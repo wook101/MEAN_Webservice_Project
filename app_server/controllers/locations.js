@@ -12,7 +12,7 @@ if (process.env.NODE_ENV==='production'){
 }
 
 const renderMainpage = function(req,res,responseBody){
-    res.render('locations-main',{
+    res.render('locations',{
         title: '메인화면',
         pageHeader: {
             title:'Cafe',
@@ -32,7 +32,7 @@ const _formatDistance = function(distance){
     }
     return retDistance;
 }
-module.exports.locationMain = function(req,res){
+module.exports.locationList = function(req,res){
     let requestOptions, path;
     path = '/api/locations';
     requestOptions = {
