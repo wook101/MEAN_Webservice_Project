@@ -11,7 +11,7 @@ router.get('/', mainCtl.main);
 router.get('/location/review/new', locationsCtl.addReview);
 
 //locations
-router.get('/locations', locationsCtl.locationsListByDistance); //이걸 처리해야 다음단계로 넘어갈 수 있음....
+router.get('/locations', locationsCtl.locationsListByDistance); //처리완료
 router.post('/locations', locationsCtl.locationsCreate);                        //json응답 성공
 router.get('/locations/:locationid',locationsCtl.locationsReadOne);             //json응답 성공
 router.put('/locations/:locationid',locationsCtl.locationsUpdateOne);           //json응답 성공
@@ -22,8 +22,6 @@ router.post('/locations/:locationid/reviews', reviewsCtl.reviewsCreate);        
 router.get('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsReadOne);       //json응답 성공
 router.put('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsUpdateOne);     //json응답 성공
 router.delete('/locations/:locationid/reviews/:reviewid',reviewsCtl.reviewsDeleteOne);  //json응답 성공
-
-
 
 
 

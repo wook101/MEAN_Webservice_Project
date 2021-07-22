@@ -15,9 +15,7 @@ const meterConversion = (function(){
         kmToM : kmToM
     };
 })();
-module.exports.locationInfo = function(req,res){
 
-};
 
 module.exports.addReview = function(req,res){
     res.render('locations-review',{title:'addReview'});
