@@ -1,5 +1,9 @@
 const Location = require('mongoose').model('Location'); 
 const request = require('request');
+const sendJsonResponse = function(res, status, content){ //상태, json응답을 함수로 만듬
+    res.status(status);
+    res.json(content);
+}
 const apiOptions = {
     server : "http://localhost:3000"
 };
@@ -19,6 +23,15 @@ const renderMainpage = function(req,res,responseBody){
     });
 }
 
+const _formatDistance = function(distance){
+    let retDistance;
+    if (distance >= 1){ //거리가 1km이상인 경우 소수점1자리까지 반올림 후 km를 붙임
+        retDistance = parseFloat(distance).toFixed(1) + 'km';
+    } else {
+        retDistance = parseInt(distance*1000)+ 'm';   //그렇지 않으면 미터 단위로 변경
+    }
+    return retDistance;
+}
 module.exports.locationMain = function(req,res){
     let requestOptions, path;
     path = '/api/locations';
@@ -26,25 +39,22 @@ module.exports.locationMain = function(req,res){
         url : apiOptions.server + path,
         method : "GET",
         json : {},
-        qs : {
-            lng : 127.06,
+        qs : {                  //해당 좌표 기준
+            lng : 127.08501,
             lat : 37.54,
-            maxDistance : 1
+            maxDistance : 2     //최대 카페 탐지 거리
         }
     }; 
     request(requestOptions, function(err, response, body){
-        if(err){
-            console.log(err);
-        } else if(response.statusCode == 200){
-            console.log(body);
-        } else{
-            console.log(response.statusCode);
+        if(err) sendJsonResponse(res,404,err);
+        
+        for(let i=0; i<body.length;i++){
+            body[i].distance = _formatDistance(body[i].distance);
         }
 
         renderMainpage(req, res, body);
     });
 };
-
 module.exports.addReview = function(req,res){
     res.render('locations-review',{title:'addReview'});
 };
