@@ -12,7 +12,7 @@ if (process.env.NODE_ENV==='production'){
 }
 
 const renderMainpage = function(req,res,responseBody){
-    res.render('locations',{
+    res.render('mainPage',{
         title: '메인화면',
         pageHeader: {
             title:'Cafe',
@@ -47,14 +47,21 @@ module.exports.locationList = function(req,res){
     }; 
     request(requestOptions, function(err, response, body){
         if(err) sendJsonResponse(res,404,err);
-        
-        for(let i=0; i<body.length;i++){
-            body[i].distance = _formatDistance(body[i].distance);
+        if(response.statusCode==200 && body.length){
+            for(let i=0; i<body.length;i++){
+                body[i].distance = _formatDistance(body[i].distance);
+            }
         }
-
         renderMainpage(req, res, body);
     });
 };
+
+
+
+module.exports.locationDetail = function(req, res){
+
+};
+
 module.exports.addReview = function(req,res){
     res.render('locations-review',{title:'addReview'});
 };
