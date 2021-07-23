@@ -3,3 +3,11 @@ mixin outputRating(rating)
     span.glyphicon.glyphicon-star
   - for (var i=rating;i<5;i++)
     span.glyphicon.glyphicon-star-empty
+
+mixin formatDate(dateString)
+  -let date = new Date(dateString);
+  -let year = date.getFullYear();
+  -let month = date.getMonth();
+  -let day = date.getDate();
+  -let output = year+'.'+month+'.'+day;
+  =output
