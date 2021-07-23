@@ -13,7 +13,7 @@ block content
       .error= errorMessage
       .row.list-group
         each location in locations
-          .col-xs-12.list-group-item(onclick="location.href='/api/locations'")
+          .col-xs-12.list-group-item(onclick="location.href='/location/#{location._id}'")
             h4= location.name
               smail &nbsp;
                 +outputRating(location.rating) 

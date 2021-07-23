@@ -43,6 +43,16 @@ const _formatDistance = function(distance){
     }
     return retDistance;
 }
+
+const renderDetailPage = function(req,res,locationDetail){
+    res.render('location-detail',{
+        title: locationDetail.name,
+        pageHeader: {title: locationDetail.name},
+        sidebar: "wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe..........................",
+        location: locationDetail
+    })
+}
+
 module.exports.locationList = function(req,res){
     let requestOptions, path;
     path = '/api/locations';
@@ -70,6 +80,22 @@ module.exports.locationList = function(req,res){
 
 
 module.exports.locationDetail = function(req, res){
+    let requestOptions,path;
+    path = "/api/locations/"+req.params.locationid;
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "GET",
+        json : {}
+    };
+    request(requestOptions, function(err, response, body){
+        let data = body;
+        data.coordinates = {
+            lng: body.coordinates[0],
+            lat: body.coordinates[1]
+        };
+        console.log(data);
+        renderDetailPage(req,res,data);
+    });
 
 };
 

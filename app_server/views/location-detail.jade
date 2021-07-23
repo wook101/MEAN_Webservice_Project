@@ -6,29 +6,29 @@ block content
   script(src='https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9j980t60f1')
   .row.page-header
     .col-lg-12
-      h1= locations.name
+      h1= location.name
   .row
     .col-xs-12.col-md-9
       .row
         .col-xs-12.col-sm-6
           p.rating
-            +outputRating(locations.rating)
-          p= locations.address
+            +outputRating(location.rating)
+          p= location.address
           .panel.panel-primary
           .panel-heading
             h2.panel-title 영업시간
           .panel-body
-            each time in openingTimes
+            each time in location.openingTimes
               p  #{time.days} : 
                 if time.closed
-                  | clesed
+                  | closed
                 else
                   | #{time.closing} - #{time.opening}
           .panel.panel-primary
           .panel-heading
             h2.panel-title 제공
           .panel-body
-            each facility in locations.facilities
+            each facility in location.facilities
               span.label
                 span.glyphicon.glyphicon-ok
                 | &nbsp;#{facility} 
@@ -46,7 +46,7 @@ block content
           a.btn.pull-right.writeReviewBtn(href='/api/location/review/new') 리뷰작성
           h2.panel-title 방문자 리뷰
         .penel-body.review-container
-          each review in reviews
+          each review in location.reviews
             .row
               .review
                 .well.well-sm.review-header
@@ -58,4 +58,4 @@ block content
                   p= review.reviewText
       .col-xs-12.col-md-3
         p.lead= sidebar
-    script(src="/javascripts/map.js" lat="#{locations.coordinates.lat}" lng="#{locations.coordinates.lng}")
+    script(src="/javascripts/map.js" lat="#{location.coordinates.lat}" lng="#{location.coordinates.lng}")
