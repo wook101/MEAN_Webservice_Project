@@ -53,7 +53,7 @@ module.exports.locationList = function(req,res){
         qs : {                  //해당 좌표 기준
             lng : 127.08501,
             lat : 37.54,
-            maxDistance : 0.5     //최대 카페 탐지 거리
+            maxDistance : 2     //최대 카페 탐지 거리
         }
     }; 
     request(requestOptions, function(err, response, body){

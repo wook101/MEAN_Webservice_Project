@@ -7,7 +7,7 @@ const othersController = require('../controllers/others');
 
 
 router.get('/', locationsController.locationList);
-router.get('/location', locationsController.locationDetail);
+router.get('/location/:locaionid', locationsController.locationDetail);
 router.get('/location/review/new', locationsController.addReview);
 router.get('/about', othersController.about);
 
