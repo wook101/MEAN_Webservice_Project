@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router(); //express에서 라우팅 모듈 가져옴
 
-const mainCtl = require('../controllers/main');
+//const mainCtl = require('../controllers/main');
 const locationsCtl = require('../controllers/locations');
 const reviewsCtl = require('../controllers/reviews');
 const othersCtl = require('../controllers/others');
 
 
-router.get('/', mainCtl.main);
+//router.get('/', mainCtl.main);
 router.get('/location/review/new', locationsCtl.addReview);
 
 //locations

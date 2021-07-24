@@ -53,6 +53,22 @@ const renderDetailPage = function(req,res,locationDetail){
     })
 }
 
+const _showError = function(req, res, status){
+    let title, content;
+    if (status==404){
+        title = "404, 페이지를 찾을 수 없습니다.";
+        content = "요청하신 페이지를 찾을 수 없습니다.";
+    }else{
+        title = status + ", 오류가 발생했습니다.";
+        content = "약간의 잘못된 오류가 발생했습니다.";
+    }
+    res.status(status);
+    res.render('error',{
+       title: title,
+       content: content 
+    });
+};
+
 module.exports.locationList = function(req,res){
     let requestOptions, path;
     path = '/api/locations';
@@ -89,11 +105,15 @@ module.exports.locationDetail = function(req, res){
     };
     request(requestOptions, function(err, response, body){
         let data = body;
-        data.coordinates = {
-            lng: body.coordinates[0],
-            lat: body.coordinates[1]
-        };
-        renderDetailPage(req,res,data);
+        if (response.statusCode==200){
+            data.coordinates = {
+                lng: body.coordinates[0],
+                lat: body.coordinates[1]
+            };
+            renderDetailPage(req,res,data);
+        }else{
+            _showError(req,res,response.statusCode);
+        }
     });
 
 };

@@ -62,6 +62,7 @@ MongoDB에서 DB의 각 항목을 다큐먼트(Document)라고 한다.
 find :   
 findByid : mongodb에서 id를 통해 다큐먼트를 찾을 때 사용함      
 findOne :   
+update : ex)db.locations.update({"name" : "TheNine 강남역점"},{$unset:{days:1}}) days필드를 제거한다.   
 geoNear :   
 geoSearch :   
 exec : DB쿼리 실행   
