@@ -19,7 +19,7 @@ start를 실행해야 한다고 알린다.
 [local DB에서 live DB로 데이터를 PUSH과정]   
 1. 데이터 덤프를 저장할 임시 디렉토리 생성   
 C:\data\dumpData      
-2. local db에서 데이터를 덤프 디렉토리 경로로 push   
+2. local db에서 데이터를 덤프 디렉토리 경로로 push ex)[localDB -> dump]     
 -h host server (and port)   
 -d database name   
 -o output destination folder   

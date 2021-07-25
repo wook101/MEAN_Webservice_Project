@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/meanWook';
 //production모드일때 외부 live db의 dbURI로 설정해준다.
 if (process.env.NODE_ENV === 'production'){
-    dbURI = "mongodb+srv://<username>:<password>@cluster0.ivwng.mongodb.net/meanWook";
+    dbURI = "mongodb+srv://wook:abc1234!@cluster0.ivwng.mongodb.net/meanWook";
 }
 
 mongoose.set('useNewUrlParser', true);
