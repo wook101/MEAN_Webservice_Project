@@ -1,9 +1,22 @@
 const mongoose = require('mongoose');
+
+
 const dbURI = 'mongodb://localhost/meanWook';
 //production모드일때 외부 live db의 dbURI로 설정해준다.
 if (process.env.NODE_ENV === 'production'){
-    dbURI = "mongodb+srv://wook:abc1234!@cluster0.ivwng.mongodb.net/meanWook?retryWrites=true&w=majority";
-}
+    //dbURI = "mongodb+srv://wook:abc1234!@cluster0.ivwng.mongodb.net/meanWook?retryWrites=true&w=majority";
+    const { MongoClient } = require('mongodb');
+    const uri = "mongodb+srv://wook:abc1234!@cluster0.ivwng.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    client.connect(err => {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+    client.close();
+    });
+}else{
+
+
+
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
@@ -51,5 +64,5 @@ process.on('SIGTERM',()=>{
 });
 
 
-
+}
 require('./locations'); //어플리케이션에서 가져옴
