@@ -8,7 +8,7 @@ const othersCtl = require('../controllers/others');
 
 
 //router.get('/', mainCtl.main);
-router.get('/location/review/new', locationsCtl.addReview);
+//router.get('/location/review/new', locationsCtl.addReview);
 
 //locations
 router.get('/locations', locationsCtl.locationsListByDistance); //처리완료

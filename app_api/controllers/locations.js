@@ -17,10 +17,6 @@ const meterConversion = (function(){
 })();
 
 
-module.exports.addReview = function(req,res){
-    res.render('locations-review',{title:'addReview'});
-};
-
 module.exports.locationsListByDistance = function(req,res){
     let lng = parseFloat(req.query.lng);
     let lat = parseFloat(req.query.lat);

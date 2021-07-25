@@ -1,5 +1,6 @@
 const Location = require('mongoose').model('Location'); 
 const { response } = require('express');
+const { RequestHeaderFieldsTooLarge } = require('http-errors');
 const request = require('request');
 const sendJsonResponse = function(res, status, content){ //상태, json응답을 함수로 만듬
     res.status(status);
@@ -56,7 +57,8 @@ const renderDetailPage = function(req,res,locationDetail){
 const renderReviewForm = function(req,res,locationDetail){
     res.render('location-review',{
         title: locationDetail.name,
-        pageHeader: {title:locationDetail.name+' 리뷰를 작성해주세요~'}
+        pageHeader: {title:locationDetail.name+' 리뷰를 작성해주세요~'},
+        error: req.query.err
     });
 };
 const _showError = function(req, res, status){
@@ -159,7 +161,10 @@ module.exports.doAddReview = function(req,res){
    request(requestOptions, function(err,response,body){
     if(response.statusCode===201){
         res.redirect('/location/'+locationid);
-    }else{
+    }else if(response.statusCode===400 && body.name && body.name==="ValidationError"){
+        res.redirect('/location/'+locationid+'/reviews/new?err=val');
+    }
+    else{
         _showError(req,res,response.statusCode);
     }
    });
