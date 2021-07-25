@@ -101,7 +101,11 @@ cloud.mongodb.com에 db구축, 500mb 무료제공
 [AddReview 기능]   
 1. locationid를 얻어오기 위해 URL에 포함시킨다.   
 2. app_server의 route.js에 router.post('/location/:locationid/reviews/new', ctrlLocaiton.doAddReview) 추가한다.      
-3. detail페이지에서 review페이지로 locaitonid를 받아온다.   
- 
-
+3. detail페이지에서 review페이지로 이동하는 변경 버튼에 locaitonid를 포함한다.   
+4. reviewForm에서 post으로 폼데이터를 담아 api요청한다.   
+5. 컨트롤러에서 doAddReview 함수를 작성하고 api를 호출한다.   
+6. 성공하면 새 리뷰를 표시한다.   
+7. 실패할 경우 에러페이지를 출력한다.   
+8. API가 성공적인 POST 오퍼레이션을 반환할 때의 상태 코드는 201번이다.   
+유용한팁: 폼의 action을 empty 스트링("")으로 설정하면, 현재 페이지의 URL에 대한 POST 요청을 하게 된다!!     
 
