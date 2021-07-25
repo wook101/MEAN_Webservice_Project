@@ -9,9 +9,9 @@ const openingTimeSchema = new mongoose.Schema({
 });
 //reviews스키마 정의 (서브 document)
 const reviewSchema = new mongoose.Schema({
-    author: String,
-    rating: {type: Number, "default":0, min:0, max:5},
-    reviewText: String,
+    author: {type: String, required: true},
+    rating: {type: Number,required:true, "default":0, min:0, max:5},
+    reviewText: {type: String, required: true},
     createdOn: {type: Date, "default": Date.now}
 });
 //location스키마 정의

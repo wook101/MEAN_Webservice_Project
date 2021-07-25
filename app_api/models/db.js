@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let dbURI = 'mongodb://localhost/meanWook'; //변수const로 선언 할 경우 값이 재할당 안되서 배포해도 local주소로 인식....
+let dbURI = 'mongodb://localhost/meanWook'; //const로 선언 할 경우 값이 재할당 안되서 배포해도 local주소로 인식....
 //production모드일때 외부 live db의 dbURI로 설정해준다.
 if (process.env.NODE_ENV === 'production'){
     dbURI = 'mongodb+srv://wook:abc1234!@cluster0.ivwng.mongodb.net/meanWook?retryWrites=true&w=majority';
