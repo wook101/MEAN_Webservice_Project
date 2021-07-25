@@ -53,10 +53,10 @@ const renderDetailPage = function(req,res,locationDetail){
         location: locationDetail
     })
 }
-const renderReviewForm = function(req,res){
+const renderReviewForm = function(req,res,locationDetail){
     res.render('location-review',{
-        title:'addReview',
-        pageHeader: {title:'000카페 제목'}
+        title: locationDetail.name,
+        pageHeader: {title:locationDetail.name+' 리뷰를 작성해주세요~'}
     });
 };
 const _showError = function(req, res, status){
