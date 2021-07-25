@@ -9,7 +9,7 @@ const apiOptions = {
     server : "http://localhost:3000"
 };
 if (process.env.NODE_ENV==='production'){
-    apiOptions.server = "http://외부 호스트 서버주소"
+    apiOptions.server = "https://cafemean.herokuapp.com";    //외부 호스트 주소
 }
 
 const renderMainpage = function(req,res,responseBody){
