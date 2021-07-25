@@ -52,7 +52,12 @@ const renderDetailPage = function(req,res,locationDetail){
         location: locationDetail
     })
 }
-
+const renderReviewForm = function(req,res){
+    res.render('location-review',{
+        title:'addReview',
+        pageHeader: {title:'000카페 제목'}
+    });
+};
 const _showError = function(req, res, status){
     let title, content;
     if (status==404){
@@ -69,6 +74,7 @@ const _showError = function(req, res, status){
     });
 };
 
+//메인페이지의 위치 리스트 정보
 module.exports.locationList = function(req,res){
     let requestOptions, path;
     path = '/api/locations';
@@ -94,7 +100,7 @@ module.exports.locationList = function(req,res){
 };
 
 
-
+//위치 상세정보
 module.exports.locationDetail = function(req, res){
     let requestOptions,path;
     path = "/api/locations/"+req.params.locationid;
@@ -118,7 +124,15 @@ module.exports.locationDetail = function(req, res){
 
 };
 
+//리뷰 작성 페이지 get
 module.exports.addReview = function(req,res){
-    res.render('locations-review',{title:'addReview'});
+
+    renderReviewForm(req,res);
+    
 };
 
+
+//리뷰 추가 post
+module.exports.doAddReview = function(req,res){
+   
+};

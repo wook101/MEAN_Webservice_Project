@@ -43,7 +43,7 @@ block content
     .col-xs-12
       .panel.penel-primary.review-panel
         .penel-heading
-          a.btn.pull-right.writeReviewBtn(href='/api/location/review/new') 리뷰작성
+          a.btn.pull-right.writeReviewBtn(href="/location/#{location._id}/reviews/new") 리뷰작성
           h2.panel-title 방문자 리뷰
         .penel-body.review-container
           each review in location.reviews

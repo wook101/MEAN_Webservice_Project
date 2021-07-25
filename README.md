@@ -62,7 +62,10 @@ MongoDB에서 DB의 각 항목을 다큐먼트(Document)라고 한다.
 find :   
 findByid : mongodb에서 id를 통해 다큐먼트를 찾을 때 사용함      
 findOne :   
-update : ex)db.locations.update({"name" : "TheNine 강남역점"},{$unset:{days:1}}) days필드를 제거한다.   
+-update     
+document에서 특정 필드만 제거하고 싶을때 update사용   
+ex)db.locations.update({"name" : "TheNine 강남역점"},{$unset:{days:1}}) days필드를 제거한다.   
+   
 geoNear :   
 geoSearch :   
 exec : DB쿼리 실행   
@@ -91,6 +94,14 @@ cloud.mongodb.com에 db구축, 500mb 무료제공
 4.연결 후 db생성, collection생성, document들 추가    
    
       
-[노드 환경 변수 NODE_ENV 사용하기]
+[노드 환경 변수 NODE_ENV 사용하기]   
+   
+
+
+[AddReview 기능]   
+1. locationid를 얻어오기 위해 URL에 포함시킨다.   
+2. app_server의 route.js에 router.post('/location/:locationid/reviews/new', ctrlLocaiton.doAddReview) 추가한다.      
+3. detail페이지에서 review페이지로 locaitonid를 받아온다.   
+ 
 
 

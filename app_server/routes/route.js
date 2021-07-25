@@ -8,7 +8,8 @@ const othersController = require('../controllers/others');
 
 router.get('/', locationsController.locationList);
 router.get('/location/:locationid', locationsController.locationDetail);
-router.get('/location/review/new', locationsController.addReview);
+router.get('/location/:locationid/reviews/new', locationsController.addReview);
+router.post('/location/:locationid/reviews/new', locationsController.doAddReview);   //리뷰추가
 router.get('/about', othersController.about);
 
 module.exports = router;
