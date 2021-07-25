@@ -1,4 +1,5 @@
 const Location = require('mongoose').model('Location'); 
+const { response } = require('express');
 const request = require('request');
 const sendJsonResponse = function(res, status, content){ //상태, json응답을 함수로 만듬
     res.status(status);
@@ -74,6 +75,30 @@ const _showError = function(req, res, status){
     });
 };
 
+const getLocationInfo = function(req,res,callback){
+    let requestOptions,path;
+    path = "/api/locations/"+req.params.locationid;
+    requestOptions = {
+        url : apiOptions.server + path,
+        method : "GET",
+        json : {}
+    };
+    request(requestOptions, function(err, response, body){
+        let data = body;
+        if (response.statusCode==200){
+            data.coordinates = {
+                lng: body.coordinates[0],
+                lat: body.coordinates[1]
+            };
+            callback(req,res,data);
+        }else{
+            _showError(req,res,response.statusCode);
+        }
+    });
+}
+
+
+
 //메인페이지의 위치 리스트 정보
 module.exports.locationList = function(req,res){
     let requestOptions, path;
@@ -102,33 +127,16 @@ module.exports.locationList = function(req,res){
 
 //위치 상세정보
 module.exports.locationDetail = function(req, res){
-    let requestOptions,path;
-    path = "/api/locations/"+req.params.locationid;
-    requestOptions = {
-        url : apiOptions.server + path,
-        method : "GET",
-        json : {}
-    };
-    request(requestOptions, function(err, response, body){
-        let data = body;
-        if (response.statusCode==200){
-            data.coordinates = {
-                lng: body.coordinates[0],
-                lat: body.coordinates[1]
-            };
-            renderDetailPage(req,res,data);
-        }else{
-            _showError(req,res,response.statusCode);
-        }
+    getLocationInfo(req,res,function(req,res,responseData){
+        renderDetailPage(req,res,responseData);
     });
-
 };
 
 //리뷰 작성 페이지 get
 module.exports.addReview = function(req,res){
-
-    renderReviewForm(req,res);
-    
+    getLocationInfo(req,res,function(req,res,responseData){
+        renderReviewForm(req,res,responseData);
+    });    
 };
 
 
