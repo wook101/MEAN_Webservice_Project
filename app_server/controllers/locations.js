@@ -28,9 +28,9 @@ const renderMainpage = function(req,res,responseBody){
         title: '메인화면',
         pageHeader: {
             title:'Cafe',
-            strapline: '주위에 Wi-Fi를 사용할 수있는 장소를 찾아보세요!'
+            strapline: '주위에 카페를 찾아보세요!'
         },
-        sidebar:'wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe.......................................',
+        sidebar:'메인페이지의 사이드바입니다~~~, Cafe.......................................',
         locations: responseBody,
         errorMessage: errorMessage
     });
@@ -50,7 +50,7 @@ const renderDetailPage = function(req,res,locationDetail){
     res.render('location-detail',{
         title: locationDetail.name,
         pageHeader: {title: locationDetail.name},
-        sidebar: "wi-fi를 지원하는 휴식할 수있는 공간을 찾고 계신가요? Cafe..........................",
+        sidebar: "상세페이지의 사이드바 입니다.~~ Cafe..........................",
         location: locationDetail
     })
 }
@@ -124,6 +124,8 @@ module.exports.locationList = function(req,res){
         }
         renderMainpage(req, res, body);
     });
+
+
 };
 
 
