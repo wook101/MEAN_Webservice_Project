@@ -130,9 +130,9 @@ module.exports.locationList = function(req,res){
         method : "GET",
         json : {},
         qs : {                  //해당 좌표 기준
-            lng : 127.08501,
-            lat : 37.54,
-            maxDistance : 10     //최대 카페 탐지 거리
+            lng : lng,
+            lat : lat,
+            maxDistance : 100     //최대 카페 탐지 거리 (단위km) ex)반경 100km이내 카페가 존재하는지!
         }
     }; 
     request(requestOptions, function(err, response, body){
