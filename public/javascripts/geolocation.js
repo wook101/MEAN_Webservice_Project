@@ -19,7 +19,8 @@ function renderCafeList(){
             console.log("실패");
         });
     }else{
-        alert("geolocaiton API를 지원하지 않습니다.");
+        alert("현재 위치 정보가 필요합니다. 설정 > 개인 정보 보호 > 위치 서비스 > 브라우저(크롬)를 허용해주세요.");
+        //alert("geolocaiton API를 지원하지 않습니다.");
     }
     
 }
