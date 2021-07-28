@@ -1,2 +1,15 @@
-script(src='/javascripts/jquery.min.js')
-script(src="/javascripts/geolocation.js")
+extends layout
+
+
+block content
+ #banner.page-header
+    .row
+      .col-lg-6
+        h1 #{pageHeader.title}
+          smail &nbsp; #{pageHeader.strapline}
+  .row
+    .col-xs-12.col-sm-8
+      button(onclick='renderCafeList()') 카페 찾아보기 !
+
+ script(src='/javascripts/jquery.min.js')
+ script(src="/javascripts/geolocation.js")

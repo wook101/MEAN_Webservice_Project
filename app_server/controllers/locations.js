@@ -2,6 +2,7 @@ const Location = require('mongoose').model('Location');
 const { response } = require('express');
 const { RequestHeaderFieldsTooLarge } = require('http-errors');
 const request = require('request');
+let lat,lng;
 const sendJsonResponse = function(res, status, content){ //상태, json응답을 함수로 만듬
     res.status(status);
     res.json(content);
@@ -98,11 +99,30 @@ const getLocationInfo = function(req,res,callback){
         }
     });
 }
+//현재 위치 정보를 얻기위한 페이지
+module.exports.geolocationGet = function(req,res){
+    res.render("geolocation",{
+        title: '메인화면',
+        pageHeader: {
+            title:'Cafe',
+            strapline: '주위에 카페를 찾아보세요!'
+        }
+    });
+};
 
-
+//현재 위치 정보 서버에 저장
+module.exports.geolocationPost = function(req,res){
+    lat = req.body.lat;
+    lng = req.body.lng;
+    res.json(req.body);
+};
 
 //메인페이지의 위치 리스트 정보
 module.exports.locationList = function(req,res){
+    if (lat==undefined && lng==undefined){
+        sendJsonResponse(res,404,{"message":"현재 위치 정보를 알 수 없습니다."});
+        return;
+    }
     let requestOptions, path;
     path = '/api/locations';
     requestOptions = {
