@@ -5,4 +5,10 @@ var mapOptions = {
     zoom: 17
 };
 
-new naver.maps.Map('map', mapOptions);
+var myMap = new naver.maps.Map('map', mapOptions);
+
+//마커표시하기
+new naver.maps.Marker({
+    position: new naver.maps.LatLng(lat, lng),
+    map: myMap
+});

@@ -28,17 +28,4 @@ function renderCafeList(){
 function showPosition(position){
     lat = position.coords.latitude;
     lng = position.coords.longitude;
-    /*
-    $.ajax({
-        url: "/",
-        type: "get",
-        dataType : "json",
-        data: {'lat':position.coords.latitude,
-                'lng':position.coords.longitude}
-    }).done(function(data){
-        console.log("성공");
-    }).fail(function(err){
-        console.log("실패");
-    });
-    */
 }
