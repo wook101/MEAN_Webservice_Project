@@ -1,3 +1,17 @@
+# 카페INFO 프로젝트
+
+### 백엔드
+- Node.js
+- Express.js
+- Npm
+- MongoDB(MongoDB Atlas Database)
+- jade(view)
+
+### 배포
+- heroku
+   
+   
+   
 ### Express 프로젝트   
 Node, npm   
 Git   
